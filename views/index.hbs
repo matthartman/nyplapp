@@ -1,0 +1,21 @@
+<h1>{{title}}</h1>
+<p>HIYA  {{title}}</p>
+Matts GF is {{mattsgf}}<BR>
+Num Results: {{numResults}}
+<BR><BR>
+<ol>
+{{#each bookList}}
+	<li>
+		{{title}}
+		{{uuid}}
+		{{apiUri}}
+	</li>
+{{/each}}
+</ol>
+
+
+<BR>
+Response:
+{{request}}
+<BR>
+<BR>
