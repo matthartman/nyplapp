@@ -8,7 +8,8 @@
  "content_scripts": [
     {
       "matches": ["*://*.amazon.com/*"],
-      "js": ["checkbook.js"]
+      "js": ["checkbook.js"],
+      "css": ["style.css"]
     }
 ],
 "browser_action": {

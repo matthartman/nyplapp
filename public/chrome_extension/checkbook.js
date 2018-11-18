@@ -25,7 +25,7 @@ if (bookTitle){
 	div.appendChild( btnForm );
 	btnForm.appendChild( btn );
 	//set attributes for div
-	div.id = 'myDivId';
+	div.id = 'checkBookNYPL';
 	div.style.position = 'fixed';
 	div.style.top = '0';
 	div.style.left = '0';
