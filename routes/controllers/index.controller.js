@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
+var cheerio = require('cheerio');
 
 
 console.log("API Token is: " + process.env.NYPL_API_TOKEN);
@@ -29,9 +30,14 @@ function getBookData(passedURI){
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+	
+	var bookToLookup = encodeURI("Children");
+
+
+	
 
 	var nypl = {
-		url: 'http://api.repo.nypl.org/api/v1/items/search?q=atlas&publicDomainOnly=false',
+		url: 'http://api.repo.nypl.org/api/v1/items/search?q=' + bookToLookup + '&publicDomainOnly=false&field=title&per_page=10',
 		headers: { "Authorization": "Token token="+ process.env.NYPL_API_TOKEN }
 	}
 
@@ -44,7 +50,10 @@ router.get('/', function(req, res, next) {
 
 			*/
 			
+			
+			
 			var myResults = JSON.parse(body);
+			console.log(body);
 			var numResults = myResults.nyplAPI.response.numResults;
 			var bookList = myResults.nyplAPI.response.result;
 			
@@ -53,21 +62,22 @@ router.get('/', function(req, res, next) {
 			} 
 			
 			if (numResults < 1){
-				firstBookURI = "No Results";
+				firstBookURI = [];
+				booklist = [];
 			} else {
 				//GET FIRST BOOK RESULT
 				var myBookArray = new Array();
 				for (i = 0; i < numResults && i < 10; i++){
 					myBookArray.push(getBookData(bookList[0].apiUri));
 				}
-				
+				var firstBookURI = bookList[0].apiUri;
 			
 			}
 			
 			
 			
 			
-			var firstBookURI = bookList[0].apiUri;
+			
 			
 			console.log('body stuff:', numResults); // Print the HTML for the Google homepage.
 
