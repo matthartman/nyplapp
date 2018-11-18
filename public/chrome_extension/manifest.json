@@ -1,0 +1,21 @@
+{
+ "manifest_version": 2,
+ "name": "NYPL Search",
+ "description": "Can I get this book from the New York Public Library?",
+ "version": "1",
+ "author": "M+S",
+ "permissions": ["tabs", "*://*.amazon.com/*"],
+ "content_scripts": [
+    {
+      "matches": ["*://*.amazon.com/*"],
+      "js": ["checkbook.js"]
+    }
+],
+"browser_action": {
+   "default_icon": "book.png",
+   "default_title": "Have a good day"
+ },
+ "web_accessible_resources": [
+     "template.html"
+ ]
+}
